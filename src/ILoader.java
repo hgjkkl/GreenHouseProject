@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public interface ILoader {
     GreenHouseList loadGreenHouses() throws IOException;
@@ -68,6 +69,15 @@ public interface ILoader {
 
         public void setGreenhouses(ArrayList<Greenhouse> greenhouses) {
             this.greenhouses = greenhouses;
+        }
+
+        public Greenhouse find(String ghId){
+            for (int i = 0; i < greenhouses.size(); i++) {
+                if (Objects.equals(greenhouses.get(i).getGhId(), ghId)) {
+                    return greenhouses.get(i);
+                }
+            }
+            return null;
         }
     }
 }
