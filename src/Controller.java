@@ -31,7 +31,7 @@ public class Controller {
         tem_hum.put(Double.valueOf(22),19.7);
         tem_hum.put(Double.valueOf(23),20.9);
         tem_hum.put(Double.valueOf(24),22.1);
-        tem_hum.put(Double.valueOf(25),23.2);
+        tem_hum.put(Double.valueOf(25),23.3);
         tem_hum.put(Double.valueOf(26),24.7);
         tem_hum.put(Double.valueOf(27),26.1);
         tem_hum.put(Double.valueOf(28),27.5);
