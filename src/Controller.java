@@ -22,9 +22,9 @@ public class Controller {
     }
 
     String kazan(double temperature_act, double humidity_act, double temperature_min, double humidity_min, double temperature_opt, boolean boiler_on, boolean sprinkler_on) throws TooHighTempDiff, TooHighHumidityDiff{
-        if((temperature_opt-temperature_act)>5)
+        if((temperature_opt-temperature_act)>=5)
             throw new TooHighTempDiff((temperature_opt-temperature_act));
-        if((humidity_min-humidity_act)>20)
+        if((humidity_min-humidity_act)>=20)
             throw new TooHighHumidityDiff((humidity_min-humidity_act));
         tem_hum.put(Double.valueOf(20),17.3);
         tem_hum.put(Double.valueOf(21),18.5);
@@ -37,7 +37,7 @@ public class Controller {
         tem_hum.put(Double.valueOf(28),27.5);
         tem_hum.put(Double.valueOf(29),28.9);
         tem_hum.put(Double.valueOf(30),30.3);
-        tem_hum.put(Double.valueOf(21),31.9);
+        tem_hum.put(Double.valueOf(31),31.9);
         tem_hum.put(Double.valueOf(32),33.5);
         tem_hum.put(Double.valueOf(33),35.1);
         tem_hum.put(Double.valueOf(34),36.7);
@@ -66,13 +66,22 @@ public class Controller {
                 if(i==temperature_opt)
                     gm3_opt=tem_hum.get(i);
             }
+            System.out.println(gm3_act);
+            System.out.println(gm3_opt);
             double gm3_hum_act = gm3_act * (humidity_act/100);//23,3*0,7 = 16,31 |13.98
+            System.out.println(gm3_hum_act);
             double fut_gm3_hum = gm3_hum_act / gm3_opt; //16,31/30,3 |0.46138613861
+            System.out.println(fut_gm3_hum);
             if(humidity_min>fut_gm3_hum) //60>53,82
             {
                 double fut_hum_min = gm3_opt * (humidity_min/100); // 18,18
+                System.out.println(fut_hum_min);
                 double plus_water = fut_hum_min - gm3_hum_act; // 1,87 |4.2
+                if(plus_water < 0)
+                    plus_water*=-1;
+                System.out.println(plus_water);
                 plus_water /= 0.01; //1%os párologtatás
+                System.out.println(plus_water);
                 plus_water *= greenhouse_size;
                 plus_water /=1000;
                 plus_water_necessary = plus_water;

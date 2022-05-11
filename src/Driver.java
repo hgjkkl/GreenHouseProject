@@ -26,12 +26,12 @@ public class Driver implements  IDriver {
         }
         catch (Controller.TooHighHumidityDiff e){
             FileWriter myWriter = new FileWriter("error_log.txt");
-            myWriter.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature:" + String.valueOf(e.difference));
+            myWriter.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature: " + String.valueOf(e.difference));
             myWriter.close();
         }
         catch (Controller.TooHighTempDiff e){
             FileWriter myWriter = new FileWriter("error_log.txt");
-            myWriter.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity:" + String.valueOf(e.difference));
+            myWriter.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity: " + String.valueOf(e.difference));
             myWriter.close();
         }
         String sC = currentCommand.locsolo(Double.valueOf(gh.getVolume()),currentSensorData.getTemperature_act(),currentSensorData.getHumidity_act(),gh.getHumidity_min(),gh.getTemperature_opt());

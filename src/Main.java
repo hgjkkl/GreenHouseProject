@@ -8,9 +8,11 @@ public class Main {
         System.out.println("TEST");
         ILoader.GreenHouseList greenhouses = new Loader().loadGreenHouses();
         for (ILoader.Greenhouse i : greenhouses.getGreenhouses()) {
+            System.out.println("---");
             IMonitor.SensorData currentSensorData = new Monitor().getSensorData(i.getGhId());
             int errorMsg = new Driver().sendCommand(i, currentSensorData.getToken(), currentSensorData.getTemperature_act(), currentSensorData.getHumidity_act());
             System.out.println(valueOf(errorMsg));
+            System.out.println("---");
         }
     }
 }
