@@ -18,23 +18,13 @@ public class Driver implements  IDriver {
         con.setDoOutput(true);
         IMonitor.SensorData currentSensorData = new Monitor().getSensorData(gh.getGhId());
         Controller currentCommand = new Controller();
-        String bC="";
-        try {
+        String bC = "";
+        String sC = "";
+        if(!currentSensorData.isBoiler_on() && !currentSensorData.isSprinkler_on()) {
             bC = currentCommand.kazan(currentSensorData.getTemperature_act(), currentSensorData.getHumidity_act(), gh.getTemperature_min(), gh.getHumidity_min(), gh.getTemperature_opt(), currentSensorData.isBoiler_on(), currentSensorData.isSprinkler_on());
-            System.out.println(bC);
-
+            sC = currentCommand.locsolo(Double.valueOf(gh.getVolume()), currentSensorData.getTemperature_act(), currentSensorData.getHumidity_act(), gh.getHumidity_min(), gh.getTemperature_opt(), gh.getTemperature_min());
         }
-        catch (Controller.TooHighHumidityDiff e){
-            FileWriter myWriter = new FileWriter("error_log.txt");
-            myWriter.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature: " + String.valueOf(e.difference));
-            myWriter.close();
-        }
-        catch (Controller.TooHighTempDiff e){
-            FileWriter myWriter = new FileWriter("error_log.txt");
-            myWriter.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity: " + String.valueOf(e.difference));
-            myWriter.close();
-        }
-        String sC = currentCommand.locsolo(Double.valueOf(gh.getVolume()),currentSensorData.getTemperature_act(),currentSensorData.getHumidity_act(),gh.getHumidity_min(),gh.getTemperature_opt());
+        System.out.println(bC);
         System.out.println(sC);
         String jsonInputString = "{\"ghId\":\""+gh.getGhId()+"\",\"boilerCommand\":\""+bC+"\",\"sprinklerCommand\":\""+sC+"\"}";
         System.out.println(jsonInputString);
