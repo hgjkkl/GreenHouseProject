@@ -10,7 +10,11 @@ public class Main {
         System.out.println("\n");
         for (ILoader.Greenhouse i : greenhouses.getGreenhouses()) {
             IMonitor.SensorData currentSensorData = new Monitor().getSensorData(i.getGhId());
-            int errorMsg = new Driver().sendCommand(i, currentSensorData.getToken(), currentSensorData.getTemperature_act(), currentSensorData.getHumidity_act());
+            int errorMsg = new Driver().sendEmptyCommand(i,currentSensorData.getToken());
+
+            if(!currentSensorData.isBoiler_on() && !currentSensorData.isSprinkler_on()){
+                errorMsg = new Driver().sendCommand(i, currentSensorData.getToken(), currentSensorData.getTemperature_act(), currentSensorData.getHumidity_act());
+            }
             System.out.println(valueOf(errorMsg)+ "\n");
         }
     }

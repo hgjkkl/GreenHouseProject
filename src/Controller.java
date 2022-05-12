@@ -8,10 +8,10 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashMap;
 
-public class Controller {
+public class Controller{
     HashMap<Double, Double> tem_hum = new HashMap<Double, Double>();
 
-    String kazan(double temperature_act, double humidity_act, double temperature_min, double humidity_min, double temperature_opt, boolean boiler_on, boolean sprinkler_on) {
+    String kazan(double temperature_act, double humidity_act, double temperature_min, double humidity_min, double temperature_opt) {
         if ((temperature_opt - temperature_act) >= 5) {
             FileWriter myWriter = null;
             try {
@@ -20,6 +20,7 @@ public class Controller {
                 bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature: " + String.valueOf((temperature_opt - temperature_act)));
                 bw.newLine();
                 bw.close();
+                return "";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -32,6 +33,7 @@ public class Controller {
                 bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity: " + String.valueOf((humidity_min - humidity_act)));
                 bw.newLine();
                 bw.close();
+                return "";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -66,6 +68,34 @@ public class Controller {
         double diff;
         double fut_hum;
         double fut_needed_water = 0;
+
+        if ((temperature_opt - temperature_act) >= 5) {
+            FileWriter myWriter = null;
+            try {
+                myWriter = new FileWriter("error_log.txt", true);
+                BufferedWriter bw = new BufferedWriter(myWriter);
+                bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature: " + String.valueOf((temperature_opt - temperature_act)));
+                bw.newLine();
+                bw.close();
+                return "";
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if ((humidity_min - humidity_act) >= 20) {
+            FileWriter myWriter = null;
+            try {
+                myWriter = new FileWriter("error_log.txt", true);
+                BufferedWriter bw = new BufferedWriter(myWriter);
+                bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity: " + String.valueOf((humidity_min - humidity_act)));
+                bw.newLine();
+                bw.close();
+                return "";
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
         if (temperature_act < temperature_min)//temperature_act<temperature_min
         {
             for (Double i : tem_hum.keySet()) {

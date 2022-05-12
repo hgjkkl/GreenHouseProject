@@ -16,9 +16,6 @@ import org.json.JSONObject;
 
 public class Loader implements  ILoader{
 
-    private GreenHouseList currentGreenHouses;
-
-
 
     @Override
     public GreenHouseList loadGreenHouses() throws IOException {
