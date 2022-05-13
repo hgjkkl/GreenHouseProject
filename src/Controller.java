@@ -66,6 +66,7 @@ public class Controller{
         double diff;
         double fut_hum;
         double fut_needed_water = 0;
+        int return_value = 0;
 
         if ((temperature_opt - temperature_act) >= 5) {
             FileWriter myWriter = null;
@@ -98,14 +99,14 @@ public class Controller{
                 if (i == temperature_act) {
                     act_water = tem_hum.get(i);
                     act_water *= (humidity_act / 100);
-                    System.out.println("act_water:"+act_water);
+                    System.out.println("act_water:"+act_water);//13,98
                     break;
                 }
             }
             for (Double i : tem_hum.keySet()) {
                 if (i == temperature_opt) {
                     needed_water = tem_hum.get(i);
-                    System.out.println("needed_water:"+needed_water);
+                    System.out.println("needed_water:"+needed_water);//27,5
                     break;
                 }
             }
@@ -114,8 +115,21 @@ public class Controller{
             if( (fut_hum*100) < humidity_min)
             {
                 fut_needed_water = ( ( ( ( (needed_water*(humidity_min/100)/*18,18*/ )-act_water/*1,87*/) /0.01/*187*/) )*greenhouse_size/*224400*/)/1000;//224,4
+                fut_needed_water *= 10;
+                String rounded = String.valueOf(fut_needed_water);
+                if (rounded.substring(3, 4).equals('5'))
+                {
+                    fut_needed_water /= 10;
+                    fut_needed_water += 1;
+                    return_value = (int) fut_needed_water;
+                }
+                else
+                {
+                    fut_needed_water /= 10;
+                    return_value = (int) fut_needed_water;
+                }
             }
-            return "son" + String.valueOf((int)fut_needed_water) + "l";
+            return "son" + String.valueOf(return_value) + "l";
         } else {
             if (humidity_act >= humidity_min) //humidity_act>=humidity_min
             {
