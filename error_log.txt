@@ -53,3 +53,15 @@
 2022-05-13T18:56:05.378020300 18:56:05.378020300 Too high difference between optimal and actual humidity: 40.0
 2022-05-13T18:56:05.379021 18:56:05.379021 Too high difference between optimal and actual temperature: 12.0
 2022-05-13T18:56:05.379021 18:56:05.379021 Too high difference between optimal and actual humidity: 40.0
+2022-05-13T18:57:09.745986 18:57:09.746986400 Too high difference between optimal and actual temperature: 5.0
+2022-05-13T18:57:09.756987800 18:57:09.756987800 Too high difference between optimal and actual temperature: 5.0
+2022-05-13T18:57:09.912024400 18:57:09.912024400 Too high difference between optimal and actual temperature: 12.0
+2022-05-13T18:57:09.913024200 18:57:09.913024200 Too high difference between optimal and actual humidity: 40.0
+2022-05-13T18:57:09.913024200 18:57:09.913024200 Too high difference between optimal and actual temperature: 12.0
+2022-05-13T18:57:09.913024200 18:57:09.913024200 Too high difference between optimal and actual humidity: 40.0
+2022-05-13T19:00:36.883353700 19:00:36.884356 Too high difference between optimal and actual temperature: 5.0
+2022-05-13T19:00:36.893358600 19:00:36.893358600 Too high difference between optimal and actual temperature: 5.0
+2022-05-13T19:00:37.063926 19:00:37.063926 Too high difference between optimal and actual temperature: 12.0
+2022-05-13T19:00:37.064926700 19:00:37.064926700 Too high difference between optimal and actual humidity: 40.0
+2022-05-13T19:00:37.065926600 19:00:37.065926600 Too high difference between optimal and actual temperature: 12.0
+2022-05-13T19:00:37.066927200 19:00:37.066927200 Too high difference between optimal and actual humidity: 40.0

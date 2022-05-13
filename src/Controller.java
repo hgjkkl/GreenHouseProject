@@ -121,11 +121,13 @@ public class Controller{
                 {
                     fut_needed_water /= 10;
                     fut_needed_water += 1;
+                    fut_needed_water = Math.round(fut_needed_water);
                     return_value = (int) fut_needed_water;
                 }
                 else
                 {
                     fut_needed_water /= 10;
+                    fut_needed_water = Math.round(fut_needed_water);
                     return_value = (int) fut_needed_water;
                 }
             }
