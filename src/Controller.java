@@ -115,23 +115,28 @@ public class Controller{
             if( (fut_hum*100) < humidity_min)
             {
                 fut_needed_water = ( ( ( ( (needed_water*(humidity_min/100)/*18,18*/ )-act_water/*1,87*/) /0.01/*187*/) )*greenhouse_size/*224400*/)/1000;//224,4
-                return_value = (int) Math.round(fut_needed_water);
-//                fut_needed_water = ( ( ( ( (needed_water*(humidity_min/100)/*18,18*/ )-act_water/*1,87*/) /0.01/*187*/) )*greenhouse_size/*224400*/)/1000;//224,4
-//                fut_needed_water *= 10;
-//                String rounded = String.valueOf(fut_needed_water);
-//                if (rounded.substring(3, 4).equals('5'))
-//                {
-//                    fut_needed_water /= 10;
-//                    fut_needed_water += 1;
-//                    fut_needed_water = Math.round(fut_needed_water);
-//                    return_value = (int) fut_needed_water;
-//                }
-//                else
-//                {
-//                    fut_needed_water /= 10;
-//                    fut_needed_water = Math.round(fut_needed_water);
-//                    return_value = (int) fut_needed_water;
-//                }
+                fut_needed_water *= 10;
+                String rounded = String.valueOf(fut_needed_water);
+                if (rounded.substring(3, 4).equals('5'))
+                {
+                    if(rounded.substring(4, 5).equals('0')) {
+                        fut_needed_water /= 10;
+                        fut_needed_water = Math.round(fut_needed_water);
+                        return_value = (int) fut_needed_water;
+                    }
+                    else{
+                        fut_needed_water /= 10;
+                        fut_needed_water += 1;
+                        fut_needed_water = Math.round(fut_needed_water);
+                        return_value = (int) fut_needed_water;
+                    }
+                }
+                else
+                {
+                    fut_needed_water /= 10;
+                    fut_needed_water = Math.round(fut_needed_water);
+                    return_value = (int) fut_needed_water;
+                }
             }
             return "son" + String.valueOf(return_value) + "l";
         } else {
