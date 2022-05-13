@@ -51,7 +51,7 @@ public class Driver implements  IDriver {
             return parseInt(response.toString()); //hibakod
         }
     }
-
+//teszeléshez sajátkezűleg editelni
     public int sendEmptyCommand(ILoader.Greenhouse gh,String token) throws IOException {
         URL url;
         url = new URL("http://193.6.19.58:8181/greenhouse/" + token);
