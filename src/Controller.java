@@ -20,7 +20,6 @@ public class Controller{
                 bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature: " + String.valueOf((temperature_opt - temperature_act)));
                 bw.newLine();
                 bw.close();
-                return "";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -33,7 +32,6 @@ public class Controller{
                 bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity: " + String.valueOf((humidity_min - humidity_act)));
                 bw.newLine();
                 bw.close();
-                return "";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -77,7 +75,6 @@ public class Controller{
                 bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual temperature: " + String.valueOf((temperature_opt - temperature_act)));
                 bw.newLine();
                 bw.close();
-                return "";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -90,7 +87,6 @@ public class Controller{
                 bw.write(String.valueOf(LocalDateTime.now()) + " " + String.valueOf(LocalTime.now()) + " Too high difference between optimal and actual humidity: " + String.valueOf((humidity_min - humidity_act)));
                 bw.newLine();
                 bw.close();
-                return "";
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
